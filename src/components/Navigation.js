@@ -5,7 +5,7 @@ import logo from '../img/logo.png'
 const Navigation = () => {
     return(
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
+            <div className="container">
                 <Link className="navbar-brand" to="/">
                     <img src={logo} width="60" height="60" alt="" />
                 </Link>
@@ -34,30 +34,30 @@ const Navigation = () => {
                         </li>
                     </ul>
 
-                    <form class="form-inline">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search..." />
-                            <div class="input-group-append">
-                                <button type="button" class="btn btn-secondary btn-number">
-                                    <i class="fa fa-search"></i>
+                    <form className="form-inline">
+                        <div className="input-group">
+                            <input type="text" className="form-control" placeholder="Search..." />
+                            <div className="input-group-append">
+                                <button type="button" className="btn btn-secondary btn-number">
+                                    <i className="fa fa-search"></i>
                                 </button>
                             </div>
                         </div>
                     </form>
 
-                    <a class="btn btn-outline-light ml-2 d-inline" href="/cart">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span class="badge badge-danger ml-1">0</span>
-                    </a>
+                    <Link className="btn btn-outline-light ml-2 d-inline" to="/cart">
+                        <i className="fa fa-shopping-cart"></i>
+                        <span className="badge badge-danger ml-1">0</span>
+                    </Link>
 
-                    <div class="dropdown">
-                        <button class="btn btn-outline-light ml-2 d-inline dropdown-toggle" type="button" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-user mr-1"></i>
+                    <div className="dropdown">
+                        <button className="btn btn-outline-light ml-2 d-inline dropdown-toggle" type="button" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i className="fa fa-user mr-1"></i>
                             Hello! Log In
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="userMenu">
-                            <a class="dropdown-item" href="#">Log In</a>
-                            <a class="dropdown-item" href="#">Register</a>
+                        <div className="dropdown-menu" aria-labelledby="userMenu">
+                            <a className="dropdown-item" href="#">Log In</a>
+                            <a className="dropdown-item" href="#">Register</a>
                         </div>
                     </div>
 
