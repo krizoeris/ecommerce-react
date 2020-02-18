@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import CartList from '../components/CartList'
-import CheckoutCard from '../components/CheckoutCard'
+import CartTotal from '../components/CartTotal'
 
 const Cart = () => {
     const cartData = [
@@ -9,25 +9,25 @@ const Cart = () => {
         { id: 3, name: 'Google Pixel', quantity: 5, price: 3500, image:"https://www.gizmochina.com/wp-content/uploads/2018/03/aa.png" },
     ]
 
-    const [cartProducts, setCartProducts] = useState(cartData)
+    const [state, setState] = useState(cartData)
 
     const deleteProduct = id => {
-        setCartProducts(cartProducts.filter(product => product.id !== id))
+        setState(state.filter(product => product.id !== id))
     }
 
     const cartTotal = () => {
-        return cartProducts.map( product => product.price).reduce((a, b) => a + b, 0)
+        return state.map( product => product.price).reduce((a, b) => a + b, 0)
     }
     
     return (
         <div className="container">
             <div className="row mt-4">
                 <div class="col-md-8">
-                    <h3 className="mb-4">Shopping Cart ({cartProducts.length})</h3>
-                    <CartList cartProducts = {cartProducts} deleteProduct = {deleteProduct} />
+                    <h3 className="mb-4">Shopping Cart ({state.length})</h3>
+                    <CartList cartProducts = {state} deleteProduct = {deleteProduct} />
                 </div>
                 <div class="col-md-4">
-                    <CheckoutCard 
+                    <CartTotal 
                         total={cartTotal()}
                     />
                 </div>
