@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Categories from './pages/Categories'
 import Product from './pages/Product'
 import Cart from './pages/Cart'
+import Checkout from './pages/Checkout'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/categories" component={Categories} />
           <Route path="/product" component={Product} />
           <Route path="/cart" component={Cart} />
+          <Route path="/checkout" component={Checkout} />
         </Switch>
       </div>
     </BrowserRouter>
