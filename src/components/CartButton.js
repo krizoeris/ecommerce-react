@@ -19,13 +19,13 @@ function CartButton(props) {
         let cartResults = globalState.cart.find(product => product.id == props.item.id) // returns an Array always
         
         if(cartResults.length > 0) {
-          // > TRUE > add qty to cart
-          cartResults[0].qty += 1
+          // > TRUE > add quantity to cart
+          cartResults[0].quantity += 1
 
         } else { 
           
-          // > FALSE> add entire product to cart with qty = 1
-          props.item.qty = 1
+          // > FALSE> add entire product to cart with quantity = 1
+          props.item.quantity = 1
           let newCart = [...globalState.cart, props.item];
           setGlobalState({
             ...globalState,
@@ -33,7 +33,7 @@ function CartButton(props) {
           })
         } 
       } else {
-        props.item.qty = 1
+        props.item.quantity = 1
         let newCart = [...globalState.cart, props.item];
         setGlobalState({
           ...globalState,

@@ -10,9 +10,9 @@ const Navigation = () => {
     let cart = globalState.cart;
     
     // Total items in cart
-    let cartQty =  cart.reduce((acc , currentProd)=>{
-      const { qty } = currentProd;
-    return acc +  qty;
+    let cardQuantity =  cart.reduce((acc , currentProd)=>{
+      const { quantity } = currentProd;
+    return acc +  quantity;
     }, 0)  
 
     return(
@@ -59,7 +59,7 @@ const Navigation = () => {
 
                     <Link className="btn btn-outline-light ml-2 d-inline" to="/cart">
                         <i className="fa fa-shopping-cart"></i>
-                        <span className="badge badge-danger ml-1">{cartQty}</span>
+                        <span className="badge badge-danger ml-1">{cardQuantity}</span>
                     </Link>
 
                     <div className="dropdown">

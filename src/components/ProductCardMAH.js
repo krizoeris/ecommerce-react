@@ -6,7 +6,7 @@ import CartButton from './CartButton'
 const ProductCard = (props) => {
 
   const [product, setProduct] = useState(
-        {id: 1, image: PhonePic, title: "iPhone 11", text: "Sexiness embodied, price unjustified, be a Jobbs-o-holic!", inStock: true, price: 3900}
+        {id: 1, image: PhonePic, name: "iPhone 11", text: "Sexiness embodied, price unjustified, be a Jobbs-o-holic!", inStock: true, price: 3900}
   )
 
   // eventually need fetch data here
@@ -55,7 +55,7 @@ const ProductCard = (props) => {
         </a>
       </div>
       <div class="card-body">
-        <h5 class="card-title">{product.title}</h5>
+        <h5 class="card-title">{product.name}</h5>
         <p class="card-text">{product.text}</p>
         <div style={textStyle}>
           <p class="card-text">{product.price}</p>
