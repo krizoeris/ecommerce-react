@@ -1,8 +1,20 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {Link, NavLink, withRouter} from 'react-router-dom'
 import logo from '../img/logo.png'
+import AppContext from '../AppContext';
+
 
 const Navigation = () => {
+    
+    const [globalState, setGlobalState] = useContext(AppContext)
+    let cart = globalState.cart;
+    
+    // Total items in cart
+    let cartQty =  cart.reduce((acc , currentProd)=>{
+      const { qty } = currentProd;
+    return acc +  qty;
+    }, 0)  
+
     return(
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container">
@@ -47,7 +59,7 @@ const Navigation = () => {
 
                     <Link className="btn btn-outline-light ml-2 d-inline" to="/cart">
                         <i className="fa fa-shopping-cart"></i>
-                        <span className="badge badge-danger ml-1">0</span>
+                        <span className="badge badge-danger ml-1">{cartQty}</span>
                     </Link>
 
                     <div className="dropdown">

@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React, { useState, useContext } from 'react'
 import CartList from '../components/CartList'
 import CartTotal from '../components/CartTotal'
+import AppContext from '../AppContext'
 
 const Cart = () => {
     const cartData = [
@@ -9,6 +10,9 @@ const Cart = () => {
         { id: 3, name: 'Google Pixel', quantity: 5, price: 3500, image:"https://www.gizmochina.com/wp-content/uploads/2018/03/aa.png" },
     ]
 
+    const [globalState, setGlobalState] = useContext(AppContext)
+    let cart = globalState.cart;
+    
     const [state, setState] = useState(cartData)
 
     const deleteProduct = id => {
