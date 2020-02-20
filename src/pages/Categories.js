@@ -5,10 +5,10 @@ import ProductFilter from '../components/ProductFilter'
 
 const Categories = (prop) => {
     const products = [
-        { id: 1, name: 'iPhone 11', category: 'Phones', brand: 'Apple', price: 4000, image:"https://media.wired.com/photos/5b22c5c4b878a15e9ce80d92/master/pass/iphonex-TA.jpg" },
-        { id: 2, name: 'Galaxy Note', category: 'Phones', brand: 'Apple', price: 3500, image:"https://image-us.samsung.com/SamsungUS/home/mobile/phones/galaxy-note/pdp/sm-n950/midnight-black/Note8-Front-S-Pen-Midnight-Black-1.jpg?$product-details-jpg$" },
-        { id: 3, name: 'Google Pixel', category: 'Phones', brand: 'Apple', price: 3500, image:"https://www.gizmochina.com/wp-content/uploads/2018/03/aa.png" },
-        { id: 4, name: 'iPad Mini', category: 'Phones', brand: 'Apple', price: 2000, image:"https://assets.entrepreneur.com/content/3x2/2000/20200116205943-Ent-iPad.jpeg" },
+        { id: 1, name: 'iPhone 11', category: 'Phones', brand: 'Apple', price: 4000, inStock: true, image:"https://media.wired.com/photos/5b22c5c4b878a15e9ce80d92/master/pass/iphonex-TA.jpg" },
+        { id: 2, name: 'Galaxy Note', category: 'Phones', brand: 'Apple', price: 3500, inStock: true, image:"https://image-us.samsung.com/SamsungUS/home/mobile/phones/galaxy-note/pdp/sm-n950/midnight-black/Note8-Front-S-Pen-Midnight-Black-1.jpg?$product-details-jpg$" },
+        { id: 3, name: 'Google Pixel', category: 'Phones', brand: 'Apple', price: 3500, inStock: true, image:"https://www.gizmochina.com/wp-content/uploads/2018/03/aa.png" },
+        { id: 4, name: 'iPad Mini', category: 'Phones', brand: 'Apple', price: 2000, inStock: true, image:"https://assets.entrepreneur.com/content/3x2/2000/20200116205943-Ent-iPad.jpeg" },
     ]
 
     const categories = ['Phones', 'Tablet', 'Laptop']
@@ -52,6 +52,7 @@ const Categories = (prop) => {
                                     price={product.price}
                                     image={product.image}
                                     height={(filterState.show) ? "200px" : "150px"}
+                                    product={product}
                                 />
                             ))
                         }

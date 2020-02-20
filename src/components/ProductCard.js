@@ -1,4 +1,5 @@
 import React from 'react'
+import CartButton from './CartButton'
 
 const ProductCard = (prop) => {
 
@@ -9,7 +10,7 @@ const ProductCard = (prop) => {
                 <div class="card-body">
                     <h5 class="card-title">{prop.name}</h5>
                     <p class="card-text">AED {prop.price}</p>
-                    <a href="#" class="btn btn-primary w-100 rounded-0">Add to Cart</a>
+                    <CartButton item={prop.product}/>
                 </div>
             </div>
         </div>

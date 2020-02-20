@@ -39,12 +39,6 @@ const Product = () => {
   </a>
 </div>
 
-
-
-
-
-
-
             {/* <img alt="iphone11" src={'https://bab-assets2.babapi.ooo/img/othe/0441617/36/6b/iphone11g2.jpg.b02d29366b.999x590x412.jpg'}  */}
             {/* style={{maxWidth: '100%', */}
             {/* height: 'auto'}}/> */}
@@ -71,7 +65,8 @@ const Product = () => {
      <br/>
      
      <button type="button" class="btn btn-success btn-block" style={{lineHeight: 2}}><i class="fas fa-cart-plus"></i> Add To Cart</button>
-     {/* <CartButton inStock={state.stock}/> */}
+     {/* <CartButton inStock={state.stock}/> 
+     Item needs to be in JSON in order for button be any use*/}
           </div>
         </div>
 
