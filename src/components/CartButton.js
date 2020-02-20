@@ -13,12 +13,10 @@ function CartButton(props) {
     //Check if ITEM is in stock
     if (props.item.inStock) {
       
-      // Check if cart is empty
-      if (globalState.cart.length > 0) {
         //Check if product is already in cart
-        let cartResults = globalState.cart.find(product => product.id == props.item.id) // returns an Array always
+        if (globalState.cart.find(product => product.id == props.item.id)) { // undefined = falsey
+          let cartResults = globalState.cart.find(product => product.id == props.item.id) // returns an Array always
         
-        if(cartResults.length > 0) {
           // > TRUE > add quantity to cart
           cartResults[0].quantity += 1
 
@@ -27,24 +25,14 @@ function CartButton(props) {
           // > FALSE> add entire product to cart with quantity = 1
           props.item.quantity = 1
           let newCart = [...globalState.cart, props.item];
+
           setGlobalState({
             ...globalState,
             cart: newCart
           })
         } 
-      } else {
-        props.item.quantity = 1
-        let newCart = [...globalState.cart, props.item];
-        setGlobalState({
-          ...globalState,
-          cart: newCart
-        })
-      }
     } // in future can add alert for 'not in stock'
   }
-
-
-
 
 
 
