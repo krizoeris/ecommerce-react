@@ -3,7 +3,7 @@ import CartButton from '../components/CartButton.js';
 import CounterButton from '../components/CounterButton.js';
 import {Link} from 'react-router-dom'
 
-//new changes
+
 
 const Product = (prop) => {
 
