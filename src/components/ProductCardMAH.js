@@ -5,7 +5,7 @@ import CartButton from './CartButton'
 
 const ProductCard = (props) => {
 
-  const [product, setProduct] = useState(
+  const [item, setItem] = useState(
         {id: 1, image: PhonePic, name: "iPhone 11", text: "Sexiness embodied, price unjustified, be a Jobbs-o-holic!", inStock: true, price: 3900}
   )
 
@@ -55,15 +55,15 @@ const ProductCard = (props) => {
         </a>
       </div>
       <div class="card-body">
-        <h5 class="card-title">{product.name}</h5>
-        <p class="card-text">{product.text}</p>
+        <h5 class="card-title">{item.name}</h5>
+        <p class="card-text">{item.text}</p>
         <div style={textStyle}>
-          <p class="card-text">{product.price}</p>
-          <CartButton item={product}/>
+          <p class="card-text">{item.price}</p>
+          <CartButton item={item}/>
         </div>
         <br/>
         <div class="card-footer" style={textStyle}>
-        {stockStatus(product.inStock)}
+        {stockStatus(item.inStock)}
       </div>
       </div>
     </div>
