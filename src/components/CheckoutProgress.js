@@ -29,12 +29,12 @@ const CheckoutProgress = () => {
                     <ShippingDetails nextStep={nextStep} /> 
                 </div>
             }
-            {state.progress == 1 &&
+            {state.progress === 1 &&
                 <div class="container" style={{"max-width": "400px"}}>
                     <PaymentDetails nextStep={nextStep} prevStep={prevStep} />
                 </div>
             }
-            {state.progress == 2 && 
+            {state.progress === 2 && 
                 <div>
                     <ConfirmCheckout /> 
                     <hr />

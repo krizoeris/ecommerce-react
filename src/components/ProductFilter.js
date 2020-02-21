@@ -2,17 +2,6 @@ import React from 'react'
 
 const ProductFilter = (prop) => {
 
-    const filteredCategory = []
-
-    const FilterCategory = val => {
-        if(val.target.checked){
-            filteredCategory.push(val.target.value)
-        }else{
-            filteredCategory.filter(category => category != val.target.value)
-        }
-        console.log(filteredCategory)
-    }
-
     return(
         <div className="card">
             <div>
@@ -24,7 +13,7 @@ const ProductFilter = (prop) => {
                         {prop.categories.map((category, key) => (
                             <label for={`category${key}`}>
                                 <li class="list-group-item border-0 m-0 pb-0">
-                                    <input type="checkbox" id={`category${key}`} class="mr-2" value={category} onChange={FilterCategory} />
+                                    <input type="checkbox" id={`category${key}`} class="mr-2" value={category} onChange={(e) => prop.handleFilter(e.target, 'categories')} />
                                     {category}
                                 </li>
                             </label>
@@ -42,7 +31,7 @@ const ProductFilter = (prop) => {
                         {prop.brands.map((brand, key) => (
                             <label for={`brand${key}`}>
                                 <li class="list-group-item border-0 m-0 pb-0">
-                                    <input type="checkbox" id={`brand${key}`} class="mr-2" value={key} />
+                                    <input type="checkbox" id={`brand${key}`} class="mr-2" value={brand} onChange={(e) => prop.handleFilter(e.target, 'brands')}/>
                                     {brand}
                                 </li>
                             </label>
