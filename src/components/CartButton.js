@@ -48,9 +48,10 @@ function CartButton(props) {
 
   const stockStatus = (stockStatus) => {
     return stockStatus ? 
-      buttonStatus = {class: 'btn btn-success btn-sm', icon: 'fas fa-cart-arrow-down', text: '  Add to Cart!'}
+      //Changed the buttons width to 100 and removed btn-sm
+      buttonStatus = {class: 'btn btn-success w-100', icon: 'fas fa-cart-arrow-down', text: '  Add to Cart!'}
       : 
-      buttonStatus = {class: 'btn-secondary btn-sm disabled', icon: 'fa fas-shopping-cart', text: 'Not in stock'}
+      buttonStatus = {class: 'btn-secondary w-100 disabled', icon: 'fa fas-shopping-cart', text: 'Not in stock'}
   }
 
   buttonStatus = stockStatus(props.item.inStock)

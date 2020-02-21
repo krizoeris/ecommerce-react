@@ -3,13 +3,19 @@ import React, {useState} from 'react';
 
 
 
-const CounterButton = () => {
+const CounterButton = (prop) => {
 
     const [state, setState] = useState(1)
 
     const increaseCount =() =>{
-      setState(state + 1) 
+        let maxValue = prop.quantity;
+        if (state >= prop.quantity) {
+            setState(maxValue)
+        } else {
+            setState (state + 1)
+        }
     }
+
 
     const decreaseCount = () => {
         if (state <= 1) {
