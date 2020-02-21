@@ -86,7 +86,7 @@ productSpecs: ['iOS', '5.8-inch Notch Display', '2436x1125 Liquid Retina display
      <CartButton item={state} inStock={state.inStock}/>
      <br/>
      
-     <Link className="btn btn-warning btn-block" to="/cart" style={{lineHeight: 2}}><i class="fas fa-eye"></i> View Shopping Cart</Link>   
+     <Link className="btn btn-warning btn-block mt-3" to="/cart" style={{lineHeight: 2}}><i class="fas fa-eye"></i> View Shopping Cart</Link>   
           
           </div>
         </div>
