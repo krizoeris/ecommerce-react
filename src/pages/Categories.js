@@ -35,7 +35,7 @@ const Categories = (prop) => {
     }
     
     let filters = filterState.products
-    console.log(filterState.products)
+    //console.log(filterState.products)
 
     const toggleFilter = () => {
         if(filterState.show === false) {
@@ -85,13 +85,14 @@ const Categories = (prop) => {
                     <hr />
                     <ProductLayout>
                         { 
-                            filters.map(product => (
+                            filters.map(prod => (
                                 <ProductCard 
-                                    name={product.name}
-                                    price={product.price}
-                                    image={product.images[0]}
+                                    id={prod._id}
+                                    name={prod.name}
+                                    price={prod.price}
+                                    images={prod.images}
                                     height={(filterState.show) ? "200px" : "150px"}
-                                    product={product}
+                                    product={prod }
                                 />
                             ))
                         }

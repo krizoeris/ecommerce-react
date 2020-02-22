@@ -10,8 +10,9 @@ function CartButton(props) {
   const [globalState, setGlobalState] = useContext(AppContext)
 
   const handleClick = () => {
+    console.log(props.item)
     //Check if ITEM is in stock
-    if (props.item.inStock) {
+    if (props.item.stock > 0) {
       
         //Check if product is already in cart
         if (globalState.cart.find(product => product.id == props.item.id)) { // undefined = falsey
@@ -47,14 +48,14 @@ function CartButton(props) {
   let buttonStatus = {}
 
   const stockStatus = (stockStatus) => {
-    return stockStatus ? 
+    return stockStatus>0 ? 
       //Changed the buttons width to 100 and removed btn-sm
       buttonStatus = {class: 'btn btn-success w-100', icon: 'fas fa-cart-arrow-down', text: '  Add to Cart!'}
       : 
       buttonStatus = {class: 'btn-secondary w-100 disabled', icon: 'fa fas-shopping-cart', text: 'Not in stock'}
   }
 
-  buttonStatus = stockStatus(props.item.inStock)
+  buttonStatus = stockStatus(props.item.stock)
 
   return ( 
     <button onClick={handleClick} type="button" style={textStyle} className={buttonStatus.class}><i class={buttonStatus.icon}></i>{buttonStatus.text}</button>
