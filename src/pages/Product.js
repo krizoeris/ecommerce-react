@@ -5,29 +5,45 @@ import {Link} from 'react-router-dom'
 
 
 
-const Product = () => {
+const Product = (prop) => {
+
+  const iPhone11 = {id: 1,
+    name: 'Apple iPhone 11 Pro with Facetime - 64GB, 4G LTE, Space Grey', 
+  brand: 'Apple', 
+  model: 'iPhone 11 Pro', 
+  price: 4000,
+  inStock: true, 
+  stock:10,
+  images: ["https://cdn.shopify.com/s/files/1/0409/7245/products/spacegrey_23c77483-1603-48c1-bed7-ec778312a2fe_1024x.jpg?v=1571439026", "https://www.argomall.com/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/a/r/argomall-apple-iphone-11-pro-original-space-gray-1_5.jpg", "https://microless.com/cdn/products/4faec1ccb9676461bf52e2e0753b35f3-hi.jpg"],
+productDetails:'A new dual‑camera system captures more of what you see and love. The fastest chip ever in a smartphone and all‑day battery life let you do more and charge less. And the highest‑quality video in a smartphone, so your memories look better than ever.',
+productSpecs: ['iOS', '5.8-inch Notch Display', '2436x1125 Liquid Retina display', '3,046mAh', '12 Mega Pixels', 'Triple 12 Mega Pixels', 'Apple A13 Bionic', '4GB', '64GB', '188g', '4G LTE']
+}
+  const [state, setState] = useState(iPhone11)
+
+  const availability =(state.stock <= 0) ? 'Out of Stock' : 'In Stock'
+
     
     return (
         <div class="container">
-        <div class="row myRow">
-          <div class="col-md myCol">
+
+       <div class="row myRow1" style={{textAlign:'justify'}}>
+
+       {/* Container 1 (image carousel) */}
+
+          <div class="col-md myCol1">
 
           <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
   <ol className="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    {state.images.map((image, index) => 
+      <li data-target="#carouselExampleIndicators" data-slide-to={image} className={index === 0 && "active"}></li>
+    )}
   </ol>
   <div className="carousel-inner">
-    <div className="carousel-item active">
-      <img src="https://cdn.shopify.com/s/files/1/0409/7245/products/spacegrey_23c77483-1603-48c1-bed7-ec778312a2fe_1024x.jpg?v=1571439026" class="d-block w-100" alt="mainphone"/>
-    </div>
-    <div className="carousel-item">
-      <img src="https://www.argomall.com/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/a/r/argomall-apple-iphone-11-pro-original-space-gray-1_5.jpg" class="d-block w-100" alt="phoneback"/>
-    </div>
-    <div className="carousel-item">
-      <img src="https://microless.com/cdn/products/4faec1ccb9676461bf52e2e0753b35f3-hi.jpg" className="d-block w-100" alt="..."/>
-    </div>
+      {state.images.map((image, index) => 
+        <div className={`carousel-item ${index === 0 && "active"}`}>
+          <img src={image} class="d-block w-100" alt={index}/>
+        </div>
+      )}
   </div>
   <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -38,173 +54,158 @@ const Product = () => {
     <span className="sr-only">Next</span>
   </a>
 </div>
-
-            {/* <img alt="iphone11" src={'https://bab-assets2.babapi.ooo/img/othe/0441617/36/6b/iphone11g2.jpg.b02d29366b.999x590x412.jpg'}  */}
-            {/* style={{maxWidth: '100%', */}
-            {/* height: 'auto'}}/> */}
           </div>
 
 
-          <div class="col-md myCol">
-          <h3 style={{marginTop:'3rem'}}>Apple iPhone 11 with Facetime - 64GB, 4G LTE, Space Grey</h3>    
-     <h5 style={{color:'red'}}>Brand: <a href="#">Apple</a> </h5>
-     <h6 style={{color:'grey'}}>Model: <a href="#">iPhone 11</a> </h6>
+{/* Container 2 (Add to Cart) */}
+
+          <div class="col-md myCol2">
+          <h3 style={{marginTop:'3rem'}}>{state.name}</h3>    
+     <h6 style={{color:'grey'}}>Brand: <a href="#">{state.brand}</a> </h6>
+     <h6 style={{color:'grey'}}>Model: <a href="#">{state.model}</a> </h6>
 
      <ul class="list">
-              <li>
-                <span style={{color:'red'}}>Availibility</span> : In Stock
-              </li>
+              <li style={{color:'#96c93d'}}>
+                <span style={{color:'grey'}}>Availibility:</span>{availability}</li>
             </ul>
-
-     <h6 class="title-price"><small>PRICE: </small><h3 style={{marginTop:'0px'}}>AED 0000</h3></h6>
-     <br/>
-
-     <h6 class="title-quantity"><small>Quantity: </small></h6>
-     <CounterButton />
-     <br/>
+            
+     <h6 class="title-price"><small>PRICE:</small></h6>
+     <h3 style={{color:'#dd1818'}}>AED {state.price}.00</h3>
+     
      <br/>
      
-     <button type="button" class="btn btn-success btn-block" style={{lineHeight: 2}}><i class="fas fa-cart-plus"></i> Add To Cart</button>
-     {/* <CartButton inStock={state.stock}/> 
-     Item needs to be in JSON in order for button be any use*/}
+     
+
+     <h6 class="title-quantity"><small>Quantity: </small></h6>
+     <CounterButton quantity={state.stock} />
+
+     <br/>
+     
+     
+     {/* <button type="button" class="btn btn-success btn-block" style={{lineHeight: 2}}><i class="fas fa-cart-plus"></i> Add To Cart</button> */}
+     <CartButton item={state} inStock={state.inStock}/>
+     <br/>
+     
+     <Link className="btn btn-warning btn-block mt-3" to="/cart" style={{lineHeight: 2}}><i class="fas fa-eye"></i> View Shopping Cart</Link>   
+          
           </div>
         </div>
 
 <br/>
 
- <div className="card-footer">
+ <div className="card-footer" style={{textAlign:'justify'}}>
                 <Link className="btn btn-outline-secondary" to="/categories"><i class="fa fa-angle-left"></i> Continue Shopping</Link>
             </div>
 
-        <div class="row myRow">
-          <div class="colmyCol">
+            <br/>
 
-<h4 style={{textAlign:'center'}}>Product Description & Specs</h4>
+
+
+{/* container 3 (Product Details) */}
+        <div class="row justify-content-center myRow2">    
+
+<h4  style={{textAlign:'center', color:'grey'}}>Product Details</h4>
 <div style={{width:'100%', borderTop:'1px solid silver'}}>
-         <p style={{padding:'15px'}}>
-             {/* <small> */}
-             Stay connected either on the phone or the Web with the Galaxy S4 I337 from Samsung. With 16 GB of memory and a 4G connection, this phone stores precious photos and video and lets you upload them to a cloud or social network at blinding-fast speed. With a 17-hour operating life from one charge, this phone allows you keep in touch even on the go. 
-
-             With its built-in photo editor, the Galaxy S4 allows you to edit photos with the touch of a finger, eliminating extraneous background items. Usable with most carriers, this smartphone is the perfect companion for work or entertainment.
-             {/* </small> */}
+         <p style={{padding:'15px', textAlign:'justify'}}>
+            
+         {state.productDetails}
+            
          </p>
-         <small>
-             <ul>
-                 <li>Super AMOLED capacitive touchscreen display with 16M colors</li>
-                 <li>Available on GSM, AT T, T-Mobile and other carriers</li>
-                 <li>Compatible with GSM 850 / 900 / 1800; HSDPA 850 / 1900 / 2100 LTE; 700 MHz Class 17 / 1700 / 2100 networks</li>
-                 <li>MicroUSB and USB connectivity</li>
-                 <li>Interfaces with Wi-Fi 802.11 a/b/g/n/ac, dual band and Bluetooth</li>
-                 <li>Wi-Fi hotspot to keep other devices online when a connection is not available</li>
-                 <li>SMS, MMS, email, Push Mail, IM and RSS messaging</li>
-                 <li>Front-facing camera features autofocus, an LED flash, dual video call capability and a sharp 4128 x 3096 pixel picture</li>
-                 <li>Features 16 GB memory and 2 GB RAM</li>
-                 <li>Upgradeable Jelly Bean v4.2.2 to Jelly Bean v4.3 Android OS</li>
-                 <li>17 hours of talk time, 350 hours standby time on one charge</li>
-                 <li>Available in white or black</li>
-                 <li>Model I337</li>
-                 <li>Package includes phone, charger, battery and user manual</li>
-                 <li>Phone is 5.38 inches high x 2.75 inches wide x 0.13 inches deep and weighs a mere 4.59 oz </li>
-             </ul>  
-         </small>
-     </div>
-          </div>
-         
-        </div>
+         </div>
+         </div>
 
-        <style>
+
+
+{/* Container 4 (Product Specs) */}
+
+         <div class="row myRow3">
+         <div class="col myCol1" style={{textAlign:'justify'}}>
+
+         <table class="table table-striped">
+ 
+  <tbody>
+  <tr>
+      <th>Operating System</th>
+      <td>{state.productSpecs[0]}</td>    
+      
+    </tr>
+    <tr>
+      <th>Screen Size</th>
+      <td>{state.productSpecs[1]}</td>
+      
+      
+    </tr>
+    <tr>
+      <th>Display Type</th>
+      <td>{state.productSpecs[2]}</td>
+      
+      
+    </tr>
+    <tr>
+      <th>Battery Capacity</th>
+      <td>{state.productSpecs[3]}</td>
+      
+    </tr>
+    <tr>
+      <th>Front Camera</th>
+      <td>{state.productSpecs[4]}</td>
+      
+    </tr>
+    <tr>
+      <th>Back Camera</th>
+      <td>{state.productSpecs[5]}</td>
+      
+    </tr>
+    <tr>
+      <th>Processor</th>
+      <td>{state.productSpecs[6]}</td>
+      
+    </tr>
+    <tr>
+      <th>RAM</th>
+      <td>{state.productSpecs[7]}</td>
+      
+    </tr>
+    <tr>
+      <th>Capacity</th>
+      <td>{state.productSpecs[8]}</td>
+      
+    </tr>
+    <tr>
+      <th>Weight</th>
+      <td>{state.productSpecs[9]}</td>
+      
+    </tr>
+    <tr>
+      <th>Network</th>
+      <td>{state.productSpecs[10]}</td>
+      
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+
+{/* Container 5 (Offers) */}
+
+
+<div class="col align-self-center myCol2">
+<h5 style= {{color:'grey'}}>We Offer:</h5>
+<div class="p-3 mb-2 bg-warning text-dark" style={{textAlign:'center'}}><i class="fas fa-award"></i> &nbsp; <b>Free 1 Year Extended Warranty</b></div>
+<div class="p-3 mb-2 bg-warning text-dark" style={{textAlign:'center'}}><i class="fas fa-truck"></i> &nbsp; <b>Free Delivery Within 24 Hours</b></div>
+<div class="p-3 mb-2 bg-warning text-dark" style={{textAlign:'center'}}><i class="fas fa-sync-alt"></i> &nbsp; <b>Hassle Free Returns/Exchange Within 10 Days</b></div>
+<div class="p-3 mb-2 bg-warning text-dark" style={{textAlign:'center'}}><i class="fas fa-thumbs-up"></i> &nbsp; <b>Best Price Guarantee</b></div>
+
+
+</div>
+     </div>
           
-        </style>
-      </div>
+         </div>
+        
+      
     );
 
 }
 
 export default Product;
-// 
-// 
-// import { CartItemContainer, CartItemImage, ItemDetailsContainer } from './CartItem.styles'
-// 
-// export const CartItem = ({ item: { imageUrl, price, name, quantity } }) => {
-//   return (
-    // <CartItemContainer>
-    //   <CartItemImage src={imageUrl} alt="item" />
-    //   <ItemDetailsContainer>
-        // <span>{name}</span>
-        // <span>
-        //   {quantity} x ${price}
-        // </span>
-    //   </ItemDetailsContainer>
-    // </CartItemContainer>
-//   )
-// }
-// 
-// export default React.memo(CartItem)
-
-
-// name:  {
-    // type: String,
-    // required: true
-// },
-//
-
-//description: {
-//    Stay connected either on the phone or the Web with the Galaxy S4 I337 from Samsung. With 16 GB of memory and a 4G connection, this phone stores precious photos and video and lets you upload them to a cloud or social network at blinding-fast speed. With a 17-hour operating life from one charge, this phone allows you keep in touch even on the go. With its built-in photo editor, the Galaxy S4 allows you to edit photos with the touch of a finger, eliminating extraneous background items. Usable with most carriers, this smartphone is the perfect companion for work or entertainment.
-// 
-// Super AMOLED capacitive touchscreen display with 16M colors
-// Available on GSM, AT&T, T-Mobile and other carriers
-// Compatible with GSM 850 / 900 / 1800; HSDPA 850 / 1900 / 2100 LTE; 700 MHz Class 17 / 1700 / 2100 networks
-// MicroUSB and USB connectivity
-// Interfaces with Wi-Fi 802.11 a/b/g/n/ac, dual band and Bluetooth
-// Wi-Fi hotspot to keep other devices online when a connection is not available
-// SMS, MMS, email, Push Mail, IM and RSS messaging
-// Front-facing camera features autofocus, an LED flash, dual video call capability and a sharp 4128 x 3096 pixel picture
-// Features 16 GB memory and 2 GB RAM
-// Upgradeable Jelly Bean v4.2.2 to Jelly Bean v4.3 Android OS
-// 17 hours of talk time, 350 hours standby time on one charge
-// Available in white or black
-// Model I337
-// Package includes phone, charger, battery and user manual
-// Phone is 5.38 inches high x 2.75 inches wide x 0.13 inches deep and weighs a mere 4.59 oz
-// },
-
-
-
-// images: {
-    // type: Array, // Products should have a slideshow that's why it is array
-    // default: []
-// },
-
-
-
-// stock:  {
-    // type: Number,
-    // required: true
-// },
-
-
-
-// price:  {
-    // type: Number,
-    // required: true
-// },
-
-
-
-// category: {Apple}
-    // type: Schema.Types.ObjectId, // Connects to category
-    // ref: 'category'
-// },
-// brand:  {
-    // type: String,
-    // required: true
-// },
-// model:  {iphone
-    // type: String,
-    // required: true
-// },
-// date: {
-    // type: Date,
-    // default: Date.now
-// }
-// });
