@@ -4,12 +4,7 @@ import ProductCard from '../components/ProductCard'
 import ProductFilter from '../components/ProductFilter'
 
 const Categories = (prop) => {
-    const products = [
-        { id: 1, name: 'iPhone 11', category: 'Phones', brand: 'Apple', inStock: true, price: 4000, image:"https://media.wired.com/photos/5b22c5c4b878a15e9ce80d92/master/pass/iphonex-TA.jpg" },
-        { id: 2, name: 'Galaxy Note', category: 'Phones', brand: 'Samsung', inStock: true, price: 3500, image:"https://image-us.samsung.com/SamsungUS/home/mobile/phones/galaxy-note/pdp/sm-n950/midnight-black/Note8-Front-S-Pen-Midnight-Black-1.jpg?$product-details-jpg$" },
-        { id: 3, name: 'Google Pixel', category: 'Laptop', brand: 'Google', inStock: true, price: 3500, image:"https://www.gizmochina.com/wp-content/uploads/2018/03/aa.png" },
-        { id: 4, name: 'iPad Mini', category: 'Tablet', brand: 'Apple', inStock: true, price: 2000, image:"https://assets.entrepreneur.com/content/3x2/2000/20200116205943-Ent-iPad.jpeg" },
-    ]
+    const products = []
 
     const categories = ['Phones', 'Tablet', 'Laptop']
 
@@ -18,12 +13,29 @@ const Categories = (prop) => {
     const filterStatus = { 
         show: true,
         categories: [],
-        brands: []
+        brands: [],
+        products: []
     }
 
-    let filters = products
-
     const [filterState, setFilterState] = useState(filterStatus)
+
+    const loadProducts = () => {
+        fetch('http://localhost:3010/product/all')
+        .then(response => response.json())
+        .then(json => {
+            setFilterState({
+                ...filterState,
+                products: json
+            })
+        })
+    }
+    
+    if(filterState.products.length === 0) {
+        loadProducts()
+    }
+    
+    let filters = filterState.products
+    console.log(filterState.products)
 
     const toggleFilter = () => {
         if(filterState.show === false) {
@@ -77,7 +89,7 @@ const Categories = (prop) => {
                                 <ProductCard 
                                     name={product.name}
                                     price={product.price}
-                                    image={product.image}
+                                    image={product.images[0]}
                                     height={(filterState.show) ? "200px" : "150px"}
                                     product={product}
                                 />
