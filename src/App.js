@@ -22,9 +22,9 @@ function App() {
       <div className="App">
         <Navigation />
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route  path="/" exact component={Home} />
           <Route path="/categories" component={Categories} />
-          <Route path="/product" component={Product} />
+          <Route path="/:id"  isExact component={Product} />
           <Route path="/cart" component={Cart} />
           <Route path="/checkout" component={Checkout} />
         </Switch>
