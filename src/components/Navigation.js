@@ -68,11 +68,14 @@ const Navigation = () => {
                             { globalState.loggedIn === true ? 'Account Info' : 'Hello! Log In'}
                         </button>
                         <div className="dropdown-menu" aria-labelledby="userMenu">
-                            <Link className="dropdown-item" to="/profile">My Profile</Link>
+                            { globalState.loggedIn !== false &&
+                                <Link className="dropdown-item" to="/profile">My Profile</Link>
+                            }
+                            
                             { globalState.loggedIn === false ?
-                                <Link className="dropdown-item" to="/user">Log In</Link>
+                                <Link className="dropdown-item" exact to="/user">Log In</Link>
                                 :
-                                <span className="dropdown-item" style={{cursor: "pointer"}} onClick={()=>{setGlobalState({...globalState, loggedIn: false})}}>'Sign out'</span>
+                                <Link to='/'><span className="dropdown-item" style={{cursor: "pointer"}} onClick={()=>{setGlobalState({...globalState, loggedIn: false})}}>Sign out</span></Link>
                             }
                             { globalState.loggedIn === false &&
                                 <Link className="dropdown-item" to="/user/register">Register</Link>

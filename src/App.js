@@ -38,8 +38,8 @@ function App() {
           <Route path="/profile" component={Profile} />
           <Route path="/editaddress" component={EditAddress} />
           <Route path="/personalinfoform" component={PersonalInfoForm} />
-          // Removed the exact attribute in User
-          <Route path="/user" component={User} />
+          // Removed the exact attribute in User - if you do, will break register
+          <Route path="/user" exact component={User} />
           <Route path="/user/register" component={Register} />
         </Switch>
       </div>
