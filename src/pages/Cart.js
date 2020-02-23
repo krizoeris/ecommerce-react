@@ -14,7 +14,7 @@ const Cart = () => {
     let cartData = globalState.cart;
 
     const deleteProduct = id => {
-        let newCart = cartData.filter(product => product.id !== id)
+        let newCart = cartData.filter(product => product._id !== id)
         setGlobalState({
             ...globalState,
             cart: newCart
