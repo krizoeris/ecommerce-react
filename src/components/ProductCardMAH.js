@@ -8,7 +8,6 @@ const ProductCard = (props) => {
   // )
   
   const item = props.item
-  const images = props.images
 
 
   const textStyle = {
@@ -34,18 +33,19 @@ const ProductCard = (props) => {
         <div id={`carousel${item._id}`} class="carousel slide" data-ride="carousel"  data-interval="false">
           <ol class="carousel-indicators">
             
-            {images.map(img, index => (
+            {props.images.map((img, index) => (
             <li data-target={`#carousel${item._id}`} data-slide-to={`${index}`} class="active"></li>
             ))}
             
           </ol>
         <div class="carousel-inner">
           
-          {images.map(img, index => 
+          {props.images.map((img, index) => 
             <div class={`carousel-item ${index==0 && 'active'}`}>
               <img src={`${img}`} class="d-block w-100" alt="..."/>
             </div>
         )}
+
         </div>
         <a class="carousel-control-prev" href={`#carousel${item._id}`} role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
