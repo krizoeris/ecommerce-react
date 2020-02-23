@@ -9,6 +9,10 @@ import User from './pages/User'
 import Register from './pages/Register'
 import Checkout from './pages/Checkout'
 import AppContext from './AppContext'
+import Profile from './pages/Profile'
+import EditAddress from './components/EditAddress'
+import PersonalInfoForm from './components/PersonalInfoForm'
+
 
 
 function App() {
@@ -31,7 +35,11 @@ function App() {
           <Route path="/product/:id"  isExact component={Product} />
           <Route path="/cart" component={Cart} />
           <Route path="/checkout" component={Checkout} />
-          <Route exact path="/user" component={User} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/editaddress" component={EditAddress} />
+          <Route path="/personalinfoform" component={PersonalInfoForm} />
+          // Removed the exact attribute in User
+          <Route path="/user" component={User} />
           <Route path="/user/register" component={Register} />
         </Switch>
       </div>
