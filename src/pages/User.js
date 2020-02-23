@@ -22,7 +22,7 @@ const User = () => {
         <UserRegisterForm fieldL={'E-mail'} fieldR={'Password'}/>
         
         <button className="btn btn-primary" style={{marginTop: "20px"}}>Sign in!</button>
-        <button className="btn btn-light" style={{marginTop: "20px", marginLeft: "15px"}}>Forgot your details?</button>
+        {/* <button className="btn btn-light" style={{marginTop: "20px", marginLeft: "15px"}}>Forgot your details?</button> */}
       </div>
     </div>
       }

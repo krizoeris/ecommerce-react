@@ -92,7 +92,7 @@ const Categories = (prop) => {
                                     price={prod.price}
                                     images={prod.images}
                                     height={(filterState.show) ? "200px" : "150px"}
-                                    product={prod }
+                                    product={prod}
                                 />
                             ))
                         }
