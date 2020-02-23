@@ -7,6 +7,10 @@ import Product from './pages/Product'
 import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
 import AppContext from './AppContext'
+import Profile from './pages/Profile'
+import EditAddress from './components/EditAddress'
+import PersonalInfoForm from './components/PersonalInfoForm'
+
 
 function App() {
   
@@ -27,6 +31,9 @@ function App() {
           <Route path="/product/:id"  isExact component={Product} />
           <Route path="/cart" component={Cart} />
           <Route path="/checkout" component={Checkout} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/editaddress" component={EditAddress} />
+          <Route path="/personalinfoform" component={PersonalInfoForm} />
         </Switch>
       </div>
     </BrowserRouter>

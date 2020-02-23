@@ -70,6 +70,8 @@ const Navigation = () => {
                         <div className="dropdown-menu" aria-labelledby="userMenu">
                             <a className="dropdown-item" href="#">Log In</a>
                             <a className="dropdown-item" href="#">Register</a>
+                            <NavLink className="nav-link" to="/profile">My Profile</NavLink>
+                            
                         </div>
                     </div>
 
