@@ -68,6 +68,7 @@ const Navigation = () => {
                             Hello! Log In
                         </button>
                         <div className="dropdown-menu" aria-labelledby="userMenu">
+                            <Link className="dropdown-item" to="/profile">My Profile</Link>
                             <Link className="dropdown-item" to="/user">Log In</Link>
                             <Link className="dropdown-item" to="/user/register">Register</Link>
                         </div>
