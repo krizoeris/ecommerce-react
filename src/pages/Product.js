@@ -7,19 +7,35 @@ import {Link} from 'react-router-dom'
 
 const Product = (prop) => {
 
-  const iPhone11 = {id: 1,
-    name: 'Apple iPhone 11 Pro with Facetime - 64GB, 4G LTE, Space Grey', 
-  brand: 'Apple', 
-  model: 'iPhone 11 Pro', 
-  price: 4000,
-  inStock: true, 
-  stock:10,
-  images: ["https://cdn.shopify.com/s/files/1/0409/7245/products/spacegrey_23c77483-1603-48c1-bed7-ec778312a2fe_1024x.jpg?v=1571439026", "https://www.argomall.com/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/a/r/argomall-apple-iphone-11-pro-original-space-gray-1_5.jpg", "https://microless.com/cdn/products/4faec1ccb9676461bf52e2e0753b35f3-hi.jpg"],
-productDetails:'A new dual‑camera system captures more of what you see and love. The fastest chip ever in a smartphone and all‑day battery life let you do more and charge less. And the highest‑quality video in a smartphone, so your memories look better than ever.',
-productSpecs: ['iOS', '5.8-inch Notch Display', '2436x1125 Liquid Retina display', '3,046mAh', '12 Mega Pixels', 'Triple 12 Mega Pixels', 'Apple A13 Bionic', '4GB', '64GB', '188g', '4G LTE']
-}
-  const [state, setState] = useState(iPhone11)
+  const products = {
+      products: [],
+      images: [],
+      specs: []
+  }
+  const [state, setState] = useState(products)
 
+  const loadProducts = () => {
+      fetch('http://localhost:3010/product/'+prop.match.params.id)
+      .then(response => response.json())
+      .then(json => {
+          setState({
+              ...state,
+              products: json,
+              images: json.images,
+              specs: json.specs
+          })
+      })
+  }
+
+  if(state.products.length === 0) {
+      loadProducts()
+  }
+
+  let product = state.products
+  let images = state.images
+  let specs = state.specs
+  
+  console.log(product)
   const availability =(state.stock <= 0) ? 'Out of Stock' : 'In Stock'
 
     
@@ -34,14 +50,14 @@ productSpecs: ['iOS', '5.8-inch Notch Display', '2436x1125 Liquid Retina display
 
           <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
   <ol className="carousel-indicators">
-    {state.images.map((image, index) => 
+    {images.map((image, index) => 
       <li data-target="#carouselExampleIndicators" data-slide-to={image} className={index === 0 && "active"}></li>
     )}
   </ol>
   <div className="carousel-inner">
-      {state.images.map((image, index) => 
+      {images.map((image, index) => 
         <div className={`carousel-item ${index === 0 && "active"}`}>
-          <img src={image} class="d-block w-100" alt={index}/>
+          <img src={image} class="d-block w-100" height="550px" alt={index}/>
         </div>
       )}
   </div>
@@ -60,9 +76,9 @@ productSpecs: ['iOS', '5.8-inch Notch Display', '2436x1125 Liquid Retina display
 {/* Container 2 (Add to Cart) */}
 
           <div class="col-md myCol2">
-          <h3 style={{marginTop:'3rem'}}>{state.name}</h3>    
-     <h6 style={{color:'grey'}}>Brand: <a href="#">{state.brand}</a> </h6>
-     <h6 style={{color:'grey'}}>Model: <a href="#">{state.model}</a> </h6>
+          <h3 style={{marginTop:'3rem'}}>{product.name}</h3>    
+     <h6 style={{color:'grey'}}>Brand: <a href="#">{product.brand}</a> </h6>
+     <h6 style={{color:'grey'}}>Model: <a href="#">{product.model}</a> </h6>
 
      <ul class="list">
               <li style={{color:'#96c93d'}}>
@@ -70,20 +86,20 @@ productSpecs: ['iOS', '5.8-inch Notch Display', '2436x1125 Liquid Retina display
             </ul>
             
      <h6 class="title-price"><small>PRICE:</small></h6>
-     <h3 style={{color:'#dd1818'}}>AED {state.price}.00</h3>
+     <h3 style={{color:'#dd1818'}}>AED {product.price}.00</h3>
      
      <br/>
      
      
 
      <h6 class="title-quantity"><small>Quantity: </small></h6>
-     <CounterButton quantity={state.stock} />
+     <CounterButton quantity={product.stock} />
 
      <br/>
      
      
      {/* <button type="button" class="btn btn-success btn-block" style={{lineHeight: 2}}><i class="fas fa-cart-plus"></i> Add To Cart</button> */}
-     <CartButton item={state} inStock={state.inStock}/>
+     <CartButton item={product} inStock={product.inStock}/>
      <br/>
      
      <Link className="btn btn-warning btn-block mt-3" to="/cart" style={{lineHeight: 2}}><i class="fas fa-eye"></i> View Shopping Cart</Link>   
@@ -108,7 +124,7 @@ productSpecs: ['iOS', '5.8-inch Notch Display', '2436x1125 Liquid Retina display
 <div style={{width:'100%', borderTop:'1px solid silver'}}>
          <p style={{padding:'15px', textAlign:'justify'}}>
             
-         {state.productDetails}
+         {product.productDetails}
             
          </p>
          </div>
@@ -126,59 +142,59 @@ productSpecs: ['iOS', '5.8-inch Notch Display', '2436x1125 Liquid Retina display
   <tbody>
   <tr>
       <th>Operating System</th>
-      <td>{state.productSpecs[0]}</td>    
+      <td>{specs[0]}</td>    
       
     </tr>
     <tr>
       <th>Screen Size</th>
-      <td>{state.productSpecs[1]}</td>
+      <td>{specs[1]}</td>
       
       
     </tr>
     <tr>
       <th>Display Type</th>
-      <td>{state.productSpecs[2]}</td>
+      <td>{specs[2]}</td>
       
       
     </tr>
     <tr>
       <th>Battery Capacity</th>
-      <td>{state.productSpecs[3]}</td>
+      <td>{specs[3]}</td>
       
     </tr>
     <tr>
       <th>Front Camera</th>
-      <td>{state.productSpecs[4]}</td>
+      <td>{specs[4]}</td>
       
     </tr>
     <tr>
       <th>Back Camera</th>
-      <td>{state.productSpecs[5]}</td>
+      <td>{specs[5]}</td>
       
     </tr>
     <tr>
       <th>Processor</th>
-      <td>{state.productSpecs[6]}</td>
+      <td>{specs[6]}</td>
       
     </tr>
     <tr>
       <th>RAM</th>
-      <td>{state.productSpecs[7]}</td>
+      <td>{specs[7]}</td>
       
     </tr>
     <tr>
       <th>Capacity</th>
-      <td>{state.productSpecs[8]}</td>
+      <td>{specs[8]}</td>
       
     </tr>
     <tr>
       <th>Weight</th>
-      <td>{state.productSpecs[9]}</td>
+      <td>{specs[9]}</td>
       
     </tr>
     <tr>
       <th>Network</th>
-      <td>{state.productSpecs[10]}</td>
+      <td>{specs[10]}</td>
       
     </tr>
   </tbody>
