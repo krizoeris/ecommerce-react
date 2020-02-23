@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ProductCardMAH from '../components/ProductCardMAH';
 
 const ProductPageLayout = () => {
@@ -8,17 +8,32 @@ const ProductPageLayout = () => {
     marginBottom: "16px"
   }
   
+  const [ productState, setProductState ] = useState({products: []})
 
+  const loadProducts = () => {
+    fetch('http://localhost:3010/product/all')
+    .then(response => response.json())
+    .then(json => {
+      setProductState({
+        ...productState,
+        products: json
+      })
+    })
+  }
 
-let cardQty = [1, 2, 3, 4, 5, 6, 7, 8]
+  
+  //Needs pagination
 
-// for below function with reqres.in, use the id themselves as id's AKA only change id={product.id}
-const cardsPerDiv = cardQty.map((number) => <ProductCardMAH id={number} />)
+if (productState.products.length === 0) {
+  loadProducts()
+}
 
   return(
     <div className="card-deck" style={style}>
       <div class="row">
-        {cardsPerDiv}
+      {productState.products.map(product => (
+        <ProductCardMAH item={product} images={product.images}/>
+      ))}
       </div>
     </div>
   )

@@ -10,18 +10,17 @@ function CartButton(props) {
   const [globalState, setGlobalState] = useContext(AppContext)
 
   const handleClick = () => {
-    console.log(props.item)
     //Check if ITEM is in stock
     if (props.item.stock > 0) {
       
         //Check if product is already in cart
-        if (globalState.cart.find(product => product.id == props.item.id)) { // undefined = falsey
-          let cartResults = globalState.cart.find(product => product.id == props.item.id); // returns an Array always
+        if (globalState.cart.find(product => product._id == props.item._id)) { // undefined = falsey
+          let cartResults = globalState.cart.find(product => product._id == props.item._id); // returns an Array always
         
           // > TRUE > add quantity to cart
           cartResults.quantity += 1;
           let oldCart = globalState.cart;
-          let newCart = oldCart.filter((prod)=>prod.id !== cartResults.id);
+          let newCart = oldCart.filter((prod)=>prod._id !== cartResults._id);
           newCart.push(cartResults)
 
           setGlobalState({
@@ -48,7 +47,7 @@ function CartButton(props) {
   let buttonStatus = {}
 
   const stockStatus = (stockStatus) => {
-    return stockStatus>0 ? 
+    return (stockStatus > 0) ? 
       //Changed the buttons width to 100 and removed btn-sm
       buttonStatus = {class: 'btn btn-success w-100', icon: 'fas fa-cart-arrow-down', text: '  Add to Cart!'}
       : 
