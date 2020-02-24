@@ -1,23 +1,21 @@
-import React, {useState} from 'react'
-import PhonePic from '../img/iphone11.jpg'
-import PhonePic2 from '../img/iphone11-gold.png'
+import React from 'react'
 import CartButton from './CartButton'
 
 const ProductCard = (props) => {
 
-  const [item, setItem] = useState(
-        {id: 1, image: PhonePic, name: "iPhone 11", text: "Sexiness embodied, price unjustified, be a Jobbs-o-holic!", inStock: true, price: 3900}
-  )
-
-  // eventually need fetch data here
+  // const [item, setItem] = useState(
+  //   props.product
+  // )
   
+  const item = props.item
+
 
   const textStyle = {
     textAlign: "center"
   }
 
   function stockStatus(stockBoolean) {
-  return (stockBoolean) ? 
+  return (stockBoolean > 0) ? 
   <div>
     <div class="spinner-grow spinner-grow-sm text-success" role="status">
       <span class="sr-only">Loading...</span>
@@ -31,39 +29,43 @@ const ProductCard = (props) => {
   return(
     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" style={{paddingBottom: "16px"}}>
       <div class="card">
-        {/* image carousel */}
-        <div id={`carousel${props.id}`} class="carousel slide" data-ride="carousel"  data-interval="false">
+        
+        <div id={`carousel${item._id}`} class="carousel slide" data-ride="carousel"  data-interval="false">
           <ol class="carousel-indicators">
-            <li data-target={`#carousel${props.id}`} data-slide-to="0" class="active"></li>
-            <li data-target={`#carousel${props.id}`} data-slide-to="1"></li>
+            
+            {props.images.map((img, index) => (
+            <li data-target={`#carousel${item._id}`} data-slide-to={`${index}`} class="active"></li>
+            ))}
+            
           </ol>
         <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src={PhonePic} class="d-block w-100" alt="..."/>
-          </div>
-          <div class="carousel-item">
-            <img src={PhonePic2} class="d-block w-100" alt="..."/>
-          </div>
+          
+          {props.images.map((img, index) => 
+            <div class={`carousel-item ${index==0 && 'active'}`}>
+              <img src={`${img}`} class="d-block w-100" alt="..."/>
+            </div>
+        )}
+
         </div>
-        <a class="carousel-control-prev" href={`#carousel${props.id}`} role="button" data-slide="prev">
+        <a class="carousel-control-prev" href={`#carousel${item._id}`} role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href={`#carousel${props.id}`} role="button" data-slide="next">
+        <a class="carousel-control-next" href={`#carousel${item._id}`} role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
       </div>
       <div class="card-body">
-        <h5 class="card-title">{item.name}</h5>
-        <p class="card-text">{item.text}</p>
+        <h5 class="card-title">{item.model}</h5>
+        <p class="card-text">{item.name}</p>
         <div style={textStyle}>
-          <p class="card-text">{item.price}</p>
+          <p class="card-text">AED {item.price}</p>
           <CartButton item={item}/>
         </div>
         <br/>
         <div class="card-footer" style={textStyle}>
-        {stockStatus(item.inStock)}
+        {stockStatus(item.stock)}
       </div>
       </div>
     </div>

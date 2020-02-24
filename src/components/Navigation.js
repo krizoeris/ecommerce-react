@@ -65,11 +65,21 @@ const Navigation = () => {
                     <div className="dropdown">
                         <button className="btn btn-outline-light ml-2 d-inline dropdown-toggle" type="button" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i className="fa fa-user mr-1"></i>
-                            Hello! Log In
+                            { globalState.loggedIn === true ? 'Account Info' : 'Hello! Log In'}
                         </button>
                         <div className="dropdown-menu" aria-labelledby="userMenu">
-                            <a className="dropdown-item" href="#">Log In</a>
-                            <a className="dropdown-item" href="#">Register</a>
+                            { globalState.loggedIn !== false &&
+                                <Link className="dropdown-item" to="/profile">My Profile</Link>
+                            }
+                            
+                            { globalState.loggedIn === false ?
+                                <Link className="dropdown-item" exact to="/user">Log In</Link>
+                                :
+                                <Link to='/'><span className="dropdown-item" style={{cursor: "pointer"}} onClick={()=>{setGlobalState({...globalState, loggedIn: false})}}>Sign out</span></Link>
+                            }
+                            { globalState.loggedIn === false &&
+                                <Link className="dropdown-item" to="/user/register">Register</Link>
+                            }
                         </div>
                     </div>
 

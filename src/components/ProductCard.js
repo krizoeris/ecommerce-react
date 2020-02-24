@@ -34,7 +34,7 @@ const ProductCard = (prop) => {
                     </a>
                 </div>
                 <div class="card-body">
-                    <Link to={`/product/${prop.id}`}><h5 class="card-title">{prop.name}</h5></Link>
+                    <Link to={`/product/${prop.id}`}><h5 class="card-title text-util">{prop.name.substr(0, 20)+'...'}</h5></Link>
                     <p class="card-text">AED {prop.price}</p>
                     <CartButton item={prop.product}/>
                 </div>

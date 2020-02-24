@@ -4,83 +4,95 @@ import ProductCard from '../components/ProductCard'
 import ProductFilter from '../components/ProductFilter'
 
 const Categories = (prop) => {
-    const products = []
-
-    const categories = ['Phones', 'Tablet', 'Laptop']
-
-    const brands = ['Apple', 'Samsung', 'Google']
-
-    const filterStatus = { 
-        show: true,
-        categories: [],
+    //Local State
+    const [state, setState] = useState({ 
+        models: [],
         brands: [],
-        products: []
+        products: [],
+
+        showFilterTab: true,
+        filters: {
+            models: [],
+            brands: []
+        }
+    })
+
+    // Products fetch collections
+    const loadCollections = collections => {
+        const collect = []
+
+        collections.map(collection =>
+            collect.push(fetch('http://localhost:3010/'+collection+'/all').then(response => response.json()))
+        )
+
+        return collect;
     }
-
-    const [filterState, setFilterState] = useState(filterStatus)
-
-    const loadProducts = () => {
-        fetch('http://localhost:3010/product/all')
-        .then(response => response.json())
-        .then(json => {
-            setFilterState({
-                ...filterState,
-                products: json
+    
+    // Collect the block of fetch
+    Promise.all(loadCollections(['product', 'model', 'brand']))
+    .then(response => {
+        if(state.products.length === 0) {
+            setState({
+                ...state,
+                products: response[0],
+                models: response[1],
+                brands: response[2]
             })
-        })
-    }
-    
-    if(filterState.products.length === 0) {
-        loadProducts()
-    }
-    
-    let filters = filterState.products
-    //console.log(filterState.products)
+        }
+    })
 
+    //Toggle filter tab
     const toggleFilter = () => {
-        if(filterState.show === false) {
-            setFilterState({...filterState, show: true})
-        } else if(filterState.show === true) {
-            setFilterState({...filterState, show: false})
+        if(state.showFilterTab === false) {
+            setState({...state, showFilterTab: true})
+        } else if(state.showFilterTab === true) {
+            setState({...state, showFilterTab: false})
         }
     }
 
+    //Filter functionality
     const handleFilter = (item, filter) => {
-        let stateFilter = filterState[filter]
+        let stateFilter = state.filters[filter]
 
         if(item.checked){
             stateFilter.push(item.value)
-            setFilterState({...filterState, [filter]: stateFilter})
+            setState({...state, filters: {...state.filters, [filter]: stateFilter}})
         }else{
             stateFilter = stateFilter.filter(product => product !== item.value)
-            setFilterState({...filterState, [filter]: stateFilter})
+            setState({...state, filters: {...state.filters, [filter]: stateFilter}})
         }
+        
         console.log(stateFilter)
     }
 
-    if(filterState.categories.length > 0 && filterState.brands.length > 0) {
-        filters = filters.filter(product => filterState.categories.includes(product.category) && filterState.brands.includes(product.brand))
-    } else if(filterState.categories.length > 0 && filterState.brands.length <= 0) {
-        filters = filters.filter(product => filterState.categories.includes(product.category))
-    } else if(filterState.categories.length <= 0 && filterState.brands.length > 0) {
-        filters = filters.filter(product => filterState.brands.includes(product.brand))
+    let filters = state.products
+
+    if(state.filters.models.length > 0 && state.filters.brands.length > 0) {
+        //If brands and models are filtered
+        filters = filters.filter(product => state.filters.models.includes(product.model) && state.filters.brands.includes(product.brand))
+    } else if(state.filters.models.length > 0 && state.filters.brands.length <= 0) {
+        //If model only is filtered
+        filters = filters.filter(product => state.filters.models.includes(product.model))
+    } else if(state.filters.models.length <= 0 && state.filters.brands.length > 0) {
+        //If brand only is filtered
+        filters = filters.filter(product => state.filters.brands.includes(product.brand))
     }
 
     return (
         <div className="container mt-4">
-            <h3 className="mb-4">Categories</h3>
+            <h3 className="mb-4">All Products</h3>
             <div className="row mt-4">
-                {!filterState.show &&
+                {!state.showFilterTab &&
                 <div className="col-md-3">
-                    <ProductFilter categories={categories} brands={brands} handleFilter={handleFilter} />
+                    <ProductFilter models={state.models} brands={state.brands} handleFilter={handleFilter} />
                 </div>
                 }
-                <div className={(filterState.show) ? "col-md-12" : "col-md-9"}>
+                <div className={(state.showFilterTab) ? "col-md-12" : "col-md-9"}>
                     <div className="d-flex justify-content-between">
                         <button className="btn btn-outline-secondary btn-sm" onClick={toggleFilter}>
-                            <i className="fa fa-filter"></i> {(filterState.show) ? "Show" : "Hide"} filter
+                            <i className="fa fa-filter"></i> {(state.showFilterTab) ? "Show" : "Hide"} filter
                         </button>
-                        <span className="text-secondary">{products.length} items found</span>
+                        <span className="text-secondary">{filters.length} items found</span>
                     </div>
                     <hr />
                     <ProductLayout>
@@ -91,7 +103,7 @@ const Categories = (prop) => {
                                     name={prod.name}
                                     price={prod.price}
                                     images={prod.images}
-                                    height={(filterState.show) ? "200px" : "150px"}
+                                    height={(state.showFilterTab) ? "260px" : "200px"}
                                     product={prod}
                                 />
                             ))
