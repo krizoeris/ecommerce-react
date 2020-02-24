@@ -20,7 +20,7 @@ function App() {
   const [globalState, setGlobalState] = useState(
     {
       cart: [], // only needs to be an object if order matters
-      loggedIn: true
+      loggedIn: false
     }
   );
   

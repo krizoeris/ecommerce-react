@@ -39,10 +39,7 @@ const Navigation = () => {
                             <Link className="nav-link" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/categories">Categories</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/product">Product</NavLink>
+                            <NavLink className="nav-link" to="/categories">All Products</NavLink>
                         </li>
                     </ul>
 

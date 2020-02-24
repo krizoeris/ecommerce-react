@@ -10,7 +10,7 @@ const Categories = (prop) => {
         brands: [],
         products: [],
 
-        showFilterTab: true,
+        showFilterTab: false,
         filters: {
             models: [],
             brands: []
