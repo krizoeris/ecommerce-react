@@ -10,7 +10,7 @@ function CartButton(props) {
   const [globalState, setGlobalState] = useContext(AppContext)
 
   const handleClick = () => {
-    console.log(props.item)
+    console.log(globalState.cart)
     //Check if ITEM is in stock
     if (props.item.stock > 0) {
       

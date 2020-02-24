@@ -16,7 +16,7 @@ const CartList = (prop) => {
             {
             prop.cartProducts.length > 0 ? (
               prop.cartProducts.map( product => (
-                <tr key={product.id}>
+                <tr key={product._id}>
                   <td scope="col">
                     <img src={product.image} width="50" height="50" />
                     <span className="ml-2">{product.name}</span>
