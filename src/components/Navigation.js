@@ -39,7 +39,11 @@ const Navigation = () => {
                             <Link className="nav-link" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
+                        
                             <NavLink className="nav-link" to="/categories">All Products</NavLink>
+                        </li>
+                        <li className="nav-item active">
+                            <Link className="nav-link" to="/Admin-product">ADMIN-PRODUCT</Link>
                         </li>
                     </ul>
 

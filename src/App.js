@@ -12,6 +12,7 @@ import AppContext from './AppContext'
 import Profile from './pages/Profile'
 import EditAddress from './components/EditAddress'
 import PersonalInfoForm from './components/PersonalInfoForm'
+import AdminProducts from './admin/AdminProducts'
 
 
 
@@ -41,6 +42,7 @@ function App() {
           // Removed the exact attribute in User - if you do, will break register
           <Route path="/user" exact component={User} />
           <Route path="/user/register" component={Register} />
+          <Route path="/admin-product" component={AdminProducts} />
         </Switch>
       </div>
     </BrowserRouter>
