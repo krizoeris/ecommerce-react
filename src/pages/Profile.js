@@ -18,30 +18,23 @@ const Profile = (prop) => {
 
 
     return (
-
-        <div class="container">
-  <div class="row justify-content-right mt-4">
-  <h3 style={{textAlign:'center', color:'grey'}}><i class="far fa-user-circle"></i> My Account</h3>
-  </div>
-
-  <div class="row justify-content-center mt-2">
-  <h6 style={{textAlign:'center', color:'blue'}}><i class="far fa-id-badge"></i> {user.firstName} {user.lastName}</h6>
-  </div>
-  <hr/>
-
-  <div class="row myRow2">
-    <div class="col-md">
-    <PersonalDetails />
-    </div>
-    <div class="col-md">
-    <AddressBook />
-    </div>  
-    </div>
-    
-    <div className="card-footer">
+      <div class="container">
+        <div class="mt-4">
+          <h3 style={{textAlign:'center', color:'grey'}}><i class="far fa-user-circle"></i> My Account</h3>
+        </div>
         <Link className="btn btn-outline-secondary" to="/"><i class="fa fa-angle-left"></i> Back To Home</Link>
+        <hr/>
+
+        <div class="row myRow2">
+          <div class="col-md">
+            <PersonalDetails />
+          </div>
+          <div class="col-md">
+            <AddressBook />
+          </div>  
+        </div>
+
       </div>
-  </div>
     )
 }
 
