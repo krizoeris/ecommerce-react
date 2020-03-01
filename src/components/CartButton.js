@@ -17,21 +17,24 @@ function CartButton(props) {
         if (globalState.cart.find(product => product._id == props.item._id)) { // undefined = falsey
           let cartResults = globalState.cart.find(product => product._id == props.item._id); // returns an Array always
         
-          // > TRUE > add quantity to cart
-          cartResults.quantity += 1;
-          let oldCart = globalState.cart;
-          let newCart = oldCart.filter((prod)=>prod._id !== cartResults._id);
-          newCart.push(cartResults)
+          //If quantity is greater than stock, stop adding to cart
+          if(props.item.stock > props.item.quantity) {
+            // > TRUE > add quantity to cart
+            cartResults.quantity += 1;
+            let oldCart = globalState.cart;
+            let newCart = oldCart.filter((prod)=>prod._id !== cartResults._id);
+            newCart.push(cartResults)
 
-          setGlobalState({
-            ...globalState,
-            cart: newCart
-          })  
+            setGlobalState({
+              ...globalState,
+              cart: newCart
+            })  
+          }
 
         } else { 
           
           // > FALSE> add entire product to cart with quantity = 1
-          props.item.quantity = 1;
+          props.item.quantity = (props.item.quantity) ? props.item.quantity : 1;
           let newCart = [...globalState.cart, props.item];
 
           setGlobalState({

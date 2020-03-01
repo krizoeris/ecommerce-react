@@ -35,8 +35,18 @@ const Product = (prop) => {
   let images = state.images
   let specs = state.specs
   
-  console.log(product)
   const availability =(state.stock <= 0) ? 'Out of Stock' : 'In Stock'
+
+  // Set the quantity from CounterButton
+  const handleQuantity = (qty) => {
+    setState({
+      ...state,
+      products: {
+        ...state.products,
+        quantity: qty
+      }
+    })
+  }
 
     
     return (
@@ -93,8 +103,7 @@ const Product = (prop) => {
      
 
      <h6 class="title-quantity"><small>Quantity: </small></h6>
-     <CounterButton quantity={product.stock} />
-
+     <CounterButton product={product} handleQuantity={handleQuantity}/>
      <br/>
      
      

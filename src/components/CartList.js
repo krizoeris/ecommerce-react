@@ -1,11 +1,14 @@
 import React, {useContext} from 'react'
 import {Link} from 'react-router-dom'
-import AppContext from '../AppContext';
+import AppContext from '../AppContext'
+import CounterButton from './CounterButton'
 
 const CartList = (prop) => {
 
   const [globalState, setGlobalState] = useContext(AppContext);
   const cartProducts = globalState.cart
+
+  console.log(cartProducts)
 
   return(
     <div className="card">
@@ -27,7 +30,8 @@ const CartList = (prop) => {
                     <span className="ml-2">{product.name}</span>
                   </td>
                   <td scope="col">
-                    <input type="number" class="form-control w-25" value={product.quantity} />
+                    {/* <CounterButton quantity={product.stock} stock={product.quantity} item={product} /> */}
+                    <CounterButton product={product} />
                   </td>
                   <td scope="col">
                     <strong>AED {product.price}</strong>
