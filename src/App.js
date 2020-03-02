@@ -5,7 +5,7 @@ import Home from './pages/Home'
 import Categories from './pages/Categories'
 import Product from './pages/Product'
 import Cart from './pages/Cart'
-import User from './pages/User'
+import Login from './pages/Login'
 import Register from './pages/Register'
 import Checkout from './pages/Checkout'
 import AppContext from './AppContext'
@@ -43,8 +43,8 @@ function App() {
           <Route path="/profile" component={Profile} />
           <Route path="/order-history" component={OrderHistory} />
 
-          <Route path="/user" exact component={User} />
-          <Route path="/user/register" component={Register} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/register" component={Register} />
 
           <Route path="/admin-product" component={AdminProducts} />
         </Switch>
