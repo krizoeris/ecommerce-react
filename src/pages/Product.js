@@ -104,7 +104,7 @@ const Product = (prop) => {
             </ul>
             
      <h6 class="title-price"><small>PRICE:</small></h6>
-     <h3 style={{color:'#dd1818'}}>AED {product.price}.00</h3>
+     <h3 style={{color:'#dd1818'}}>{product.price.toLocaleString('en-US', {style: 'currency', currency: 'AED', })}</h3>
      
      <br/>
      

@@ -16,27 +16,29 @@ const CartList = (prop) => {
         <table className="table m-0">
           <thead>
             <tr>
-              <th scope="col">Product</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Price</th>
-              <th scope="col"></th>
+              <th colspan="2">Product</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th></th>
             </tr>
             {
             cartProducts.length > 0 ? (
               cartProducts.map( product => (
                 <tr key={product._id}>
-                  <td scope="col">
+                  <td width="50px">
                     <img src={product.images[0]} width="50" height="50" />
-                    <span className="ml-2">{product.name}</span>
                   </td>
-                  <td scope="col">
+                  <td width="300px">
+                    {product.name}
+                  </td>
+                  <td>
                     {/* <CounterButton quantity={product.stock} stock={product.quantity} item={product} /> */}
                     <CounterButton product={product} />
                   </td>
-                  <td scope="col">
-                    <strong>AED {product.price}</strong>
+                  <td>
+                    <strong>{product.price.toLocaleString('en-US', {style: 'currency', currency: 'AED', })}</strong>
                   </td>
-                  <td scope="col">
+                  <td>
                     <button onClick={() => prop.deleteProduct(product._id)} className="btn btn-danger"><i class="fa fa-times"></i></button>
                   </td>
                 </tr>

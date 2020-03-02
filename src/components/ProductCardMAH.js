@@ -60,7 +60,7 @@ const ProductCard = (props) => {
         <h5 class="card-title">{item.model}</h5>
         <p class="card-text">{item.name}</p>
         <div style={textStyle}>
-          <p class="card-text">AED {item.price}</p>
+          <p class="card-text">{item.price.toLocaleString('en-US', {style: 'currency', currency: 'AED'})}</p>
           <CartButton item={item}/>
         </div>
         <br/>

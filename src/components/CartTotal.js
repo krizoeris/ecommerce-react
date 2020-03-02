@@ -11,7 +11,7 @@ const CartTotal = (prop) => {
             <div className="card-body">
                 <h5>
                     <span>Total: </span>
-                    <strong class="text-align">AED {prop.total}</strong>
+                    <strong class="text-align">{prop.total}</strong>
                 </h5>
                 <hr />
                 <center>

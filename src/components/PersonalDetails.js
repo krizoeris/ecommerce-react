@@ -12,7 +12,7 @@ const PersonalDetails = (prop) => {
 
     return(
       <div>
-        <div class="card" style={{width: '30rem'}}>
+        <div class="card">
           <div class="card-header">
             <h5 className="mt-2" style={{textAlign:'center'}}><i class="far fa-address-card"></i> Personal Info
               <Link className="btn btn-warning" to="/personalinfoform" style={{float:'right'}}><i class="fas fa-pencil-alt"></i> Edit</Link>

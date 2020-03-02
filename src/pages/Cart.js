@@ -19,20 +19,20 @@ const Cart = () => {
 
     }
 
-    const cartTotal = () => {
-        return cartData.map( product => (product.price*product.quantity)).reduce((a, b) => a + b, 0)
-    }
+    const cartTotal = cartData.map( product => (product.price*product.quantity)).reduce((a, b) => a + b, 0)
+
+    const cartTotalQty = cartData.map( product => (product.quantity)).reduce((a, b) => a + b, 0)
     
     return (
         <div className="container">
             <div className="row mt-4">
                 <div class="col-md-8">
-                    <h3 className="mb-4">Shopping Cart ({cartData.length})</h3>
+                    <h3 className="mb-4">Shopping Cart ({cartTotalQty})</h3>
                     <CartList deleteProduct = {deleteProduct} />
                 </div>
                 <div class="col-md-4">
                     <CartTotal 
-                        total={cartTotal()}
+                        total={cartTotal.toLocaleString('en-US', {style: 'currency', currency: 'AED'})}
                     />
                 </div>
             </div>

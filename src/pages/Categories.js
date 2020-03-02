@@ -108,7 +108,7 @@ const Categories = (prop) => {
                                 <ProductCard 
                                     id={prod._id}
                                     name={prod.name}
-                                    price={prod.price}
+                                    price={prod.price.toLocaleString('en-US', {style: 'currency', currency: 'AED' })}
                                     images={prod.images}
                                     height={(state.showFilterTab) ? "260px" : "200px"}
                                     product={prod}

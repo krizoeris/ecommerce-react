@@ -1,10 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import ConfirmDetails from '../components/ConfirmCheckout'
 
 const OrderHistory = () => {
     return (
         <div className="container mt-4">
-            <h2 className="mb-4">Order History</h2>
+             <h3 style={{textAlign:'center', color:'grey'}}><i class="fa fa-file-invoice"></i> Order History</h3>
+            <Link className="btn btn-outline-secondary" to="/"><i class="fa fa-angle-left"></i> Back To Home</Link>
+            <hr/>
             <table class="table table-bordered">
                 <thead>
                     <tr>

@@ -25,11 +25,11 @@ const Profile = (prop) => {
         <Link className="btn btn-outline-secondary" to="/"><i class="fa fa-angle-left"></i> Back To Home</Link>
         <hr/>
 
-        <div class="row myRow2">
-          <div class="col-md">
+        <div class="row">
+          <div class="col-md-6">
             <PersonalDetails />
           </div>
-          <div class="col-md">
+          <div class="col-md-6">
             <AddressBook />
           </div>  
         </div>
