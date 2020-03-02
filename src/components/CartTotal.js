@@ -19,7 +19,7 @@ const CartTotal = (prop) => {
                 </center>
             </div>
             <div className="card-footer">
-                <Link className="btn btn-success w-100" to={(globalState.loggedIn) ? "/checkout" : "/user"}>Proceed to Checkout <i class="fa fa-arrow-circle-right"></i></Link>
+                <Link className="btn btn-success w-100" to={globalState.cart.length === 0 ?  console.log("nothing to checkout") : ((globalState.loggedI) ? "/checkout" : "/user")}>Proceed to Checkout <i class="fa fa-arrow-circle-right"></i></Link>
             </div>
         </div>
     )

@@ -1,32 +1,14 @@
 import React, { useState } from 'react'
 import ProductCardMAH from '../components/ProductCardMAH';
 
-const ProductPageLayout = () => {
+const ProductPageLayout = (prop) => {
   const style = {
     marginLeft: "0px",
     marginRight: "0px",
     marginBottom: "16px"
   }
   
-  const [ productState, setProductState ] = useState({products: []})
-
-  const loadProducts = () => {
-    fetch('http://localhost:3010/product/all')
-    .then(response => response.json())
-    .then(json => {
-      setProductState({
-        ...productState,
-        products: json
-      })
-    })
-  }
-
-  
-  //Needs pagination
-
-if (productState.products.length === 0) {
-  loadProducts()
-}
+  const [ productState, setProductState ] = useState({products: prop.products})
 
   return(
     <div className="card-deck" style={style}>

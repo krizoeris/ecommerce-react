@@ -8,7 +8,7 @@ const [state, setState] = useState({
   products: []
 })
 
-const getData = () => {fetch('http://localhost:3010/product/all') //change after Heroku
+const getData = () => {fetch(process.env.REACT_APP_BACKEND_URL+'product/all') //change after Heroku
     .then(response => response.json())
     .then(jsonData => {
       setState({

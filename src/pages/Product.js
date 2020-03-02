@@ -2,12 +2,13 @@ import React, {useState} from 'react';
 import CartButton from '../components/CartButton.js';
 import CounterButton from '../components/CounterButton.js';
 import {Link} from 'react-router-dom'
-
+import { ReactComponent as LoadingAnimation} from '../img/loading.svg'
 
 
 const Product = (prop) => {
 
   const products = {
+      loaded: false,
       products: [],
       images: [],
       specs: []
@@ -15,14 +16,15 @@ const Product = (prop) => {
   const [state, setState] = useState(products)
 
   const loadProducts = () => {
-      fetch('http://localhost:3010/product/'+prop.match.params.id)
+      fetch(process.env.REACT_APP_BACKEND_URL+'product/'+prop.match.params.id)
       .then(response => response.json())
       .then(json => {
           setState({
               ...state,
               products: json,
               images: json.images,
-              specs: json.specs
+              specs: json.specs,
+              loaded: true
           })
       })
   }
@@ -48,9 +50,15 @@ const Product = (prop) => {
     })
   }
 
+  if(state.loaded === false) {
+    return(
+      <div style={{marginTop:"100px"}}><LoadingAnimation /></div>
+    )
+  } else {
+
     
     return (
-        <div class="container">
+        <div class="container mt-4">
 
        <div class="row myRow1" style={{textAlign:'justify'}}>
 
@@ -230,6 +238,7 @@ const Product = (prop) => {
         
       
     );
+}
 
 }
 

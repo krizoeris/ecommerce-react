@@ -2,10 +2,13 @@ import React, {useState} from 'react'
 import ProductLayout from '../components/ProductLayout'
 import ProductCard from '../components/ProductCard'
 import ProductFilter from '../components/ProductFilter'
+import { ReactComponent as LoadingAnimation} from '../img/loading.svg'
 
 const Categories = (prop) => {
     //Local State
     const [state, setState] = useState({ 
+        loaded: false,
+
         models: [],
         brands: [],
         products: [],
@@ -22,7 +25,7 @@ const Categories = (prop) => {
         const collect = []
 
         collections.map(collection =>
-            collect.push(fetch('http://localhost:3010/'+collection+'/all').then(response => response.json()))
+            collect.push(fetch(process.env.REACT_APP_BACKEND_URL+collection+'/all').then(response => response.json()))
         )
 
         return collect;
@@ -36,7 +39,8 @@ const Categories = (prop) => {
                 ...state,
                 products: response[0],
                 models: response[1],
-                brands: response[2]
+                brands: response[2],
+                loaded: true, 
             })
         }
     })
@@ -95,6 +99,9 @@ const Categories = (prop) => {
                         <span className="text-secondary">{filters.length} items found</span>
                     </div>
                     <hr />
+                    {(state.loaded === false) &&
+                            <div style={{marginTop:"100px"}}><LoadingAnimation /></div>
+                    }
                     <ProductLayout>
                         { 
                             filters.map(prod => (
