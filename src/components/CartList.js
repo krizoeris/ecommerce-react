@@ -29,7 +29,7 @@ const CartList = (prop) => {
                     <img src={product.images[0]} width="50" height="50" />
                   </td>
                   <td width="300px">
-                    {product.name}
+                    <strong><Link class="text-dark" to={`/product/${product._id}`}>{product.name}</Link></strong>
                   </td>
                   <td>
                     {/* <CounterButton quantity={product.stock} stock={product.quantity} item={product} /> */}

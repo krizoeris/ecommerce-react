@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const LoginForm = () => {
   
@@ -7,21 +8,20 @@ const LoginForm = () => {
   }
 
   return(
-    //Added a div container and form class to form tag
-    <div class="container">
-      <form class="form">
+    <form>
         <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <label for="inputEmail" class="form-label">Username</label>
+            <input type="text" class="form-control" placeholder="Enter Your Email" id="inputEmail"/>
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+            <label for="inputPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" placeholder="Enter Your Password" id="inputPassword"/>
         </div>
-        <button type="submit" onClick={handleClick} class="btn btn-primary">Submit</button>
-      </form>
-    </div>
+        <div>
+            <button className="btn btn-primary w-100 mb-2">Sign In</button>
+            <Link to="/register" className="btn btn-light w-100">Not yet Registered? Register Now</Link>
+        </div>
+    </form>
   )
 }
 export default LoginForm

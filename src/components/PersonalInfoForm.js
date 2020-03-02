@@ -16,6 +16,10 @@ const PersonalInfoForm = (prop) => {
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="inputEmail" class="form-label"><i class="fas fa-mail"></i> Email</label>
+                    <input type="email" class="form-control" placeholder="Enter Your Email" id="inputEmail"/>
+                </div>
+                <div class="form-group">
                     <label for="inputPassword" class="form-label"><i class="fas fa-key"></i> Password</label>
                     <input type="password" class="form-control" placeholder="Enter Your Password" id="inputPassword"/>
                 </div>
