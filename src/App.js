@@ -13,6 +13,7 @@ import Profile from './pages/Profile'
 import EditAddress from './components/EditAddress'
 import PersonalInfoForm from './components/PersonalInfoForm'
 import AdminProducts from './admin/AdminProducts'
+import OrderHistory from './pages/OrderHistory'
 
 
 
@@ -36,12 +37,15 @@ function App() {
           <Route path="/product/:id"  isExact component={Product} />
           <Route path="/cart" component={Cart} />
           <Route path="/checkout" component={Checkout} />
-          <Route path="/profile" component={Profile} />
           <Route path="/editaddress" component={EditAddress} />
           <Route path="/personalinfoform" component={PersonalInfoForm} />
-          // Removed the exact attribute in User - if you do, will break register
+
+          <Route path="/profile" component={Profile} />
+          <Route path="/order-history" component={OrderHistory} />
+
           <Route path="/user" exact component={User} />
           <Route path="/user/register" component={Register} />
+
           <Route path="/admin-product" component={AdminProducts} />
         </Switch>
       </div>

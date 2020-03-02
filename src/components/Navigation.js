@@ -70,7 +70,10 @@ const Navigation = () => {
                         </button>
                         <div className="dropdown-menu" aria-labelledby="userMenu">
                             { globalState.loggedIn !== false &&
-                                <Link className="dropdown-item" to="/profile">My Profile</Link>
+                                <div>
+                                    <Link className="dropdown-item" to="/profile">My Profile</Link>
+                                    <Link className="dropdown-item" to="/order-history">Order History</Link>
+                                </div>
                             }
                             
                             { globalState.loggedIn === false ?
