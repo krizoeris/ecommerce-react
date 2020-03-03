@@ -15,14 +15,13 @@ import PersonalInfoForm from './components/PersonalInfoForm'
 import AdminProducts from './admin/AdminProducts'
 import OrderHistory from './pages/OrderHistory'
 
-
-
 function App() {
   
   const [globalState, setGlobalState] = useState(
     {
       cart: [], // only needs to be an object if order matters
-      loggedIn: true
+      loggedIn: true,
+      userId: '5e5debab0e4a566ec00a79f7'
     }
   );
   
