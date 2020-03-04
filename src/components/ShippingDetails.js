@@ -41,7 +41,6 @@ const ShippingDetails = (prop) => {
                 })
             )
         }
-        
     }
 
     if(state.loaded === false) {
@@ -110,7 +109,7 @@ const ShippingDetails = (prop) => {
                 <hr />
                 <div class="d-flex justify-content-between">
                     <Link to="/cart" className="btn btn-outline-dark">Go back to Cart</Link>
-                    <button onClick={prop.nextStep} className="btn btn-warning">Save & Continue</button>
+                    <button onClick={handleShipping} className="btn btn-warning">Save & Continue</button>
                 </div>
             </form>
             :

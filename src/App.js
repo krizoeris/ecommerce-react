@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import Home from './pages/Home'
 import Categories from './pages/Categories'
@@ -24,6 +24,21 @@ function App() {
       userId: sessionStorage.getItem('userid') ? sessionStorage.getItem('userid') : ''
     }
   );
+
+  const PrivateRoute = ({component: Component, ...restOfProps}) => {
+    return(
+      <Route 
+        {...restOfProps} 
+        render={
+          () => sessionStorage.getItem('jwt') ?
+          (<Component {...restOfProps} />) :
+          (<Redirect to={
+            {pathname: '/'}
+          } />)
+        }
+      />
+    )
+  }
   
   return (
     <AppContext.Provider value={[globalState, setGlobalState]}>
@@ -39,8 +54,8 @@ function App() {
           <Route path="/editaddress" component={EditAddress} />
           <Route path="/personalinfoform" component={PersonalInfoForm} />
 
-          <Route path="/profile" component={Profile} />
-          <Route path="/order-history" component={OrderHistory} />
+          <PrivateRoute path="/profile" component={Profile} />
+          <PrivateRoute path="/order-history" component={OrderHistory} />
 
           <Route path="/login" exact component={Login} />
           <Route path="/register" component={Register} />
