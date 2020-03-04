@@ -1,14 +1,21 @@
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
 import {Link} from 'react-router-dom';
 import ShippingDetails from "./ShippingDetails";
 import PaymentDetails from "./PaymentDetails";
 import ConfirmCheckout from "./ConfirmCheckout";
 import CheckoutProgressBar from "./CheckoutProgressBar";
+import AppContext from '../AppContext'
 
 const CheckoutProgress = () => {
 
+    const [globalState, setGlobalState] = useContext(AppContext)
+
+    const cart = globalState.cart
+
     const [state, setState] = useState({
         progress: 0,
+        cart: cart,
+        shipping: []
     });
 
     const nextStep = () => {
@@ -26,7 +33,7 @@ const CheckoutProgress = () => {
             <CheckoutProgressBar progress={state.progress} />
             {state.progress === 0 && 
                 <div>
-                    <ShippingDetails nextStep={nextStep} /> 
+                    <ShippingDetails nextStep={nextStep} userId={globalState.userId} /> 
                 </div>
             }
             {state.progress === 1 &&
