@@ -20,8 +20,8 @@ function App() {
   const [globalState, setGlobalState] = useState(
     {
       cart: [], // only needs to be an object if order matters
-      loggedIn: true,
-      userId: '5e5debab0e4a566ec00a79f7'
+      loggedIn: sessionStorage.getItem('jwt') ? true : false,
+      userId: sessionStorage.getItem('userid') ? sessionStorage.getItem('userid') : ''
     }
   );
   

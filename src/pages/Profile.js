@@ -1,22 +1,9 @@
 import React, { useState, useContext } from 'react'
-import AppContext from '../AppContext'
 import {Link} from 'react-router-dom'
 import AddressBook from '../components/AddressBook'
 import PersonalDetails from '../components/PersonalDetails'
 
-
-
 const Profile = (prop) => {
-
-    const user = {id: 1,
-        firstName: 'Kriztian', 
-      lastName: 'Eris Labatete', 
-      phone: '+971589979765', 
-      email: 'kriztian.eris@gmail.com',
-      password: '********'
-    }
-
-
     return (
       <div class="container">
         <div class="mt-4">

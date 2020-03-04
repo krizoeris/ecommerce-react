@@ -18,9 +18,11 @@ const ConfirmDetails = (prop) => {
                             <li class="list-group-item border-0 m-0 p-0">
                                 <small>{prop.address[1]}</small>
                             </li>
+                            {prop.email && // Check if email exist
                             <li class="list-group-item border-0 m-0 p-0">
                                 <small><i class="fa fa-envelope"></i> {prop.email}</small>
                             </li>
+                            }
                             <li class="list-group-item border-0 m-0 p-0">
                                 <small><i class="fa fa-phone"></i> +971{prop.phone}}</small>
                             </li>

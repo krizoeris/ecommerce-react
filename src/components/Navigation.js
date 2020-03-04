@@ -8,6 +8,15 @@ const Navigation = () => {
     
     const [globalState, setGlobalState] = useContext(AppContext)
     let cart = globalState.cart;
+
+    const logOut = () => {
+        sessionStorage.clear()
+        setGlobalState({
+            ...globalState, 
+            loggedIn: false,
+            userId: ''
+        })
+    }
     
     // Total items in cart
     let cartQuantity =  cart.reduce((acc , currentProd)=>{
@@ -42,9 +51,9 @@ const Navigation = () => {
                         
                             <NavLink className="nav-link" to="/categories">All Products</NavLink>
                         </li>
-                        <li className="nav-item active">
+                        {/* <li className="nav-item active">
                             <Link className="nav-link" to="/Admin-product">ADMIN-PRODUCT</Link>
-                        </li>
+                        </li> */}
                     </ul>
 
                     <form className="form-inline">
@@ -73,7 +82,7 @@ const Navigation = () => {
                                 <div>
                                     <Link className="dropdown-item" to="/profile">My Profile</Link>
                                     <Link className="dropdown-item" to="/order-history">Order History</Link>
-                                    <Link className="dropdown-item" to='/' onClick={()=>{setGlobalState({...globalState, loggedIn: false})}}>Log out</Link>
+                                    <Link className="dropdown-item" to='/' onClick={logOut}>Log out</Link>
                                 </div>
                             }
                             

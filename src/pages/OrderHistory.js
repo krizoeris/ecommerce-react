@@ -18,7 +18,7 @@ const OrderHistory = () => {
     const orders = state.orders
 
     if(state.orders.length === 0) {
-        fetch(process.env.REACT_APP_BACKEND_URL+'order/'+userId)
+        fetch(process.env.REACT_APP_BACKEND_URL+'order/user/'+userId)
         .then(response => response.json())
         .then(json => setState({
             ...state,

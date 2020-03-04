@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import AppContext from '../AppContext'
+import { Redirect } from 'react-router-dom'
 import UserLoginForm from '../components/UserLoginForm'
 import logo from '../img/logo.png'
 
@@ -9,7 +10,10 @@ const Login = () => {
   }
 
   const [globalState, setGlobalState] = useContext(AppContext)
-
+  
+  if(globalState.loggedIn) {
+    return <Redirect to="/" />
+  }
 
   return(
     
